@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	h1{
+		color: green;
+	}
+    /* Darker background-color on hover */
+	ul li:hover {
+  	background: #ddd;
+	}
+	</style>
+
+</head>
+	<body>
+		<h1>Create a To-Do List!</h1>
+		<p>Add items to your to-do list below. When you're done, click the item to remove it!</p>
+		
+        <form>
+  			<label for="item">To-Do Item:</label>
+  			<input name="item" id="item" type="text" /> 
+  			<input type="button" id="add" onclick="addbtn()" value="Add" /> 
+		</form>
+
+		<ul id="todoList">
+		</ul>
+        
+        <script>
+            var list = document.querySelector('ul');
+			list.addEventListener('click', function(task) {
+  				if (task.target.tagName === 'LI') {
+      				task.target.style.display = "none";
+  				}
+			}, false);
+
+			function addbtn(){
+      			var list = document.createElement("li");
+    			var newTask = document.getElementById("item").value;
+    			var tnode = document.createTextNode(newTask);
+    			list.appendChild(tnode);
+    			if(newTask === ''){
+            		alert("You need to enter something.");
+            	}else{         
+            		document.getElementById("todoList").appendChild(list);
+    				document.getElementByID("item").value = "";
+    			}
+            }
+		</script>
+	</body>
+</html> 
